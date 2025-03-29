@@ -1,4 +1,4 @@
-#LazChat
+# LazChat
 
 A chat interface that allows opening and saving of files
 
