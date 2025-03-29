@@ -17,6 +17,8 @@ type
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
+    UseCodeCheck: TCheckBox;
+    UseQAndR: TCheckBox;
     ClearCodeButton: TButton;
     Button5: TButton;
     Button6: TButton;
@@ -24,6 +26,7 @@ type
     ClassNameEdit: TEdit;
     DeleteButton: TButton;
     GetModelsButton: TButton;
+    Label2: TLabel;
     PromptLabel: TLabel;
     Label3: TLabel;
     Label4: TLabel;
@@ -72,6 +75,8 @@ type
     procedure UpdatePromptButtonClick(Sender: TObject);
     procedure UpdatePromptButtonKeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
+    procedure UseCodeCheckChange(Sender: TObject);
+    procedure UseQAndRChange(Sender: TObject);
 
   public
     procedure AddNewPrompt(NewSystemPromptName, NewSystemPrompt: String);
@@ -288,6 +293,22 @@ begin
 
 end;
 
+procedure TForm1.UseCodeCheckChange(Sender: TObject);
+begin
+  if UseCodeCheck.Checked then
+     UseQAndR.Checked := False;
+  if not UseCodeCheck.Checked then
+     UseQAndR.Checked := True;
+end;
+
+procedure TForm1.UseQAndRChange(Sender: TObject);
+begin
+  if UseQAndR.Checked then
+     UseCodeCheck.Checked := False;
+  if not UseQAndR.Checked then
+     UseCodeCheck.Checked := True;
+end;
+
 // 3) Send a new user prompt, get the assistant reply
 procedure TForm1.Button1Click(Sender: TObject);
 var
@@ -324,7 +345,7 @@ begin
   //UserMsg.Add('content', UserPrompt);
   //FConversation.Add(UserMsg);
   // (You can cast if needed in older FPC: FConversation.Add(TJSONData(UserMsg));)
-  if FirstMessage = 0 then
+  if (FirstMessage = 0) and (not UseCodeCheck.Checked) then
   begin
     UserMsg := TJSONObject.Create;
     UserMsg.Add('role', 'user');
@@ -337,6 +358,11 @@ begin
     UserMsg.Add('role', 'user');
     UserMsg.Add('content', Memo1.Text);
     FConversation.Add(UserMsg);
+    if FirstMessage = 1 then
+    begin
+      UseCodeCheck.Checked := False;
+      UseQAndR.Checked := True;
+    end;
   end;
   FirstMessage := 0;
   Memo2.Clear;

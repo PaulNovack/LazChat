@@ -1,11 +1,12 @@
 object NewPromptForm: TNewPromptForm
-  Left = 2250
+  Left = 628
   Height = 321
-  Top = 531
+  Top = 353
   Width = 519
   Caption = 'New Prompt'
   ClientHeight = 321
   ClientWidth = 519
+  FormStyle = fsStayOnTop
   OnCreate = FormCreate
   Position = poMainFormCenter
   LCLVersion = '3.8.0.0'

@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 94
+  Left = 92
   Height = 1027
-  Top = 8
+  Top = 56
   Width = 1770
   Caption = 'LazChat'
   ClientHeight = 1027
@@ -54,8 +54,8 @@ object Form1: TForm1
   end
   object FileListBox1: TFileListBox
     Left = 16
-    Height = 784
-    Top = 120
+    Height = 760
+    Top = 144
     Width = 232
     Directory = '/home/pnovack/2025-code/OpenAILazChat'
     ItemHeight = 0
@@ -78,9 +78,9 @@ object Form1: TForm1
     Text = '/Users/paulnovack/git/fu/application/models'
   end
   object Label5: TLabel
-    Left = 256
+    Left = 264
     Height = 17
-    Top = 202
+    Top = 176
     Width = 155
     Caption = 'Code / Text To Send LLM'
     Font.Height = -13
@@ -90,7 +90,7 @@ object Form1: TForm1
   object Label6: TLabel
     Left = 16
     Height = 17
-    Top = 104
+    Top = 128
     Width = 179
     Caption = 'Selected Directory File List'
   end
@@ -146,7 +146,7 @@ object Form1: TForm1
         Top = 72
         Width = 790
         Align = alBottom
-        ScrollBars = ssAutoVertical
+        ScrollBars = ssVertical
         TabOrder = 0
       end
       object Button3: TButton
@@ -188,9 +188,18 @@ object Form1: TForm1
         Height = 25
         Top = 8
         Width = 155
-        Caption = 'Save Q and A Memo'
+        Caption = 'Save Q and R Memo'
         TabOrder = 4
         OnClick = Button2Click
+      end
+      object UseQAndR: TCheckBox
+        Left = 520
+        Height = 23
+        Top = 42
+        Width = 199
+        Caption = 'Use Q and R for user input'
+        TabOrder = 5
+        OnChange = UseQAndRChange
       end
     end
     object PromptTab: TTabSheet
@@ -227,6 +236,7 @@ object Form1: TForm1
           'When I ask "repository?" give me the complete symfony repository  code with all code ignitor functions translated to their symfony equivalents no comments just the complete code, No Placeholders.'
           '  '
         )
+        ScrollBars = ssVertical
         TabOrder = 1
         OnChange = Memo4Change
         OnKeyUp = Memo4KeyUp
@@ -299,16 +309,34 @@ object Form1: TForm1
     Visible = False
   end
   object ClearCodeButton: TButton
-    Left = 424
+    Left = 256
     Height = 25
-    Top = 194
+    Top = 192
     Width = 232
     Caption = 'Clear Code / Text to send to LLM'
     TabOrder = 10
     OnClick = ClearCodeButtonClick
   end
+  object UseCodeCheck: TCheckBox
+    Left = 496
+    Height = 23
+    Top = 194
+    Width = 271
+    Caption = 'Use Code / Text Memo for User Input'
+    Checked = True
+    State = cbChecked
+    TabOrder = 11
+    OnChange = UseCodeCheckChange
+  end
+  object Label2: TLabel
+    Left = 16
+    Height = 17
+    Top = 104
+    Width = 306
+    Caption = 'Double Click to Open File in Code / Text Memo'
+  end
   object SaveDialog1: TSaveDialog
-    Left = 1488
-    Top = 160
+    Left = 1368
+    Top = 136
   end
 end

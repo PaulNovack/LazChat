@@ -47,11 +47,15 @@ end;
 procedure TNewPromptForm.SaveButtonClick(Sender: TObject);
 begin
   Form1.AddNewPrompt(PromptNameEdit.Text,PromptMemo.Text);
+  PromptNameEdit.Text := '';
+  PromptMemo.Text := '';
   NewPromptForm.Hide;
 end;
 
 procedure TNewPromptForm.CancelButtonClick(Sender: TObject);
 begin
+  PromptNameEdit.Text := '';
+  PromptMemo.Text := '';
   NewPromptForm.Hide;
 end;
 
