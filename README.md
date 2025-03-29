@@ -4,6 +4,8 @@ You will need to add your OpenAI key to the ~./lazOpenAI/settings.json file the 
 
 Fill out the settings.json and then restart the application.
 
+## The application provides the following functionality
+
 A chat interface that allows opening and saving of files.
 
 Allows you to choose a LLM.
