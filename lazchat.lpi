@@ -25,6 +25,15 @@
     </RunParams>
     <RequiredPackages>
       <Item>
+        <PackageName Value="SynEditDsgn"/>
+      </Item>
+      <Item>
+        <PackageName Value="SynEdit"/>
+      </Item>
+      <Item>
+        <PackageName Value="CEF4Delphi_Lazarus"/>
+      </Item>
+      <Item>
         <PackageName Value="LCL"/>
       </Item>
     </RequiredPackages>
@@ -53,6 +62,13 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="Unit2"/>
+      </Unit>
+      <Unit>
+        <Filename Value="gamesunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="GamesForm"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="GamesUnit"/>
       </Unit>
     </Units>
   </ProjectOptions>

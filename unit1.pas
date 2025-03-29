@@ -5,9 +5,10 @@ unit Unit1;
 interface
 
 uses
-  Classes, SysUtils, Forms, Controls, TypInfo,Graphics, Dialogs, StdCtrls, FileCtrl,
-  ComboEx, ShellCtrls, EditBtn, Menus, ComCtrls, fpjson, jsonparser,
-  uchatOllama, uChatGpt,RegExpr, Unit2;
+  Classes, SysUtils, Forms, Controls, TypInfo, Graphics, Dialogs, StdCtrls,
+  FileCtrl, ComboEx, ShellCtrls, EditBtn, Menus, ComCtrls, SynEdit,
+  SynHighlighterPHP, uCEFChromium, fpjson, jsonparser, uchatOllama, uChatGpt,
+  RegExpr, Unit2, GamesUnit;
 
 type
 
@@ -17,6 +18,12 @@ type
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
+    SaveCodeButton: TButton;
+    CopyFromQAToCodeButton: TButton;
+    Label10: TLabel;
+    ShowGamesButton: TButton;
+    SynEdit1: TSynEdit;
+    SynPHPSyn1: TSynPHPSyn;
     UseCodeCheck: TCheckBox;
     UseQAndR: TCheckBox;
     ClearCodeButton: TButton;
@@ -55,6 +62,7 @@ type
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
     procedure ClearCodeButtonClick(Sender: TObject);
+    procedure CopyFromQAToCodeButtonClick(Sender: TObject);
     procedure GetModelsButtonClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure DeleteButtonClick(Sender: TObject);
@@ -71,7 +79,9 @@ type
     procedure Memo4Change(Sender: TObject);
     procedure Memo4KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure PromptComboChange(Sender: TObject);
+    procedure SaveCodeButtonClick(Sender: TObject);
     procedure SaveJsonButtonClick(Sender: TObject);
+    procedure ShowGamesButtonClick(Sender: TObject);
     procedure UpdatePromptButtonClick(Sender: TObject);
     procedure UpdatePromptButtonKeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -276,9 +286,27 @@ begin
   FirstMessage := 1;
 end;
 
+procedure TForm1.SaveCodeButtonClick(Sender: TObject);
+var
+  FullPath: string;
+begin
+  // Combine the selected directory and the filename
+  FullPath :=  FileListBox1.FileName;
+
+  // Save the memo’s text to the resulting file
+  Memo1.Lines.SaveToFile(FullPath);
+end;
+
+
+
 procedure TForm1.SaveJsonButtonClick(Sender: TObject);
 begin
   SaveJsonData;
+end;
+
+procedure TForm1.ShowGamesButtonClick(Sender: TObject);
+begin
+  GamesForm.Show;
 end;
 
 procedure TForm1.UpdatePromptButtonClick(Sender: TObject);
@@ -407,6 +435,11 @@ begin
   Memo1.Clear;
 end;
 
+procedure TForm1.CopyFromQAToCodeButtonClick(Sender: TObject);
+begin
+     Memo1.Text := Memo2.Text;
+end;
+
 procedure TForm1.RemoveMarkdownSyntaxFromMemo;
 var
   RegExp: TRegExpr;
@@ -480,6 +513,8 @@ begin
   SystemMsg.Add('content', Memo4.Text);
   FConversation.Add(SystemMsg);
   FirstMessage := 1;
+  UseCodeCheck.Checked := True;
+  UseQAndR.Checked := False;
 end;
 
 procedure TForm1.Button6Click(Sender: TObject);
