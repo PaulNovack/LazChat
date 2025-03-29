@@ -16,6 +16,6 @@ Keeps history of questions and code or other resources in conversation till rese
 
 Currently only works using ChatGPT may add ollama and some other LLM's in the future
 
-![Mainwindow 1](./MainWindow1.png)
+![Main Window 1](./MainWindow1.png)
 
 ![<Main Window 2](./MainWindow2.png)
