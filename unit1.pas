@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, TypInfo, Graphics, Dialogs, StdCtrls,
   FileCtrl, ComboEx, ShellCtrls, EditBtn, Menus, ComCtrls, SynEdit,
   SynHighlighterPHP, uCEFChromium, fpjson, jsonparser, uchatOllama, uChatGpt,
-  RegExpr, Unit2, GamesUnit;
+  RegExpr, Unit2, GamesUnit, Types;
 
 type
 
@@ -18,11 +18,13 @@ type
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
+    DefaultPromptsJson: TMemo;
     SaveCodeButton: TButton;
     CopyFromQAToCodeButton: TButton;
     Label10: TLabel;
     ShowGamesButton: TButton;
-    SynEdit1: TSynEdit;
+    Memo2: TSynEdit;
+    Memo1: TSynEdit;
     SynPHPSyn1: TSynPHPSyn;
     UseCodeCheck: TCheckBox;
     UseQAndR: TCheckBox;
@@ -39,7 +41,6 @@ type
     Label4: TLabel;
     Label8: TLabel;
     Label9: TLabel;
-    Memo2: TMemo;
     Memo3: TMemo;
     Memo4: TMemo;
     NewPromptButton: TButton;
@@ -56,7 +57,6 @@ type
     Label5: TLabel;
     Label6: TLabel;
     Label7: TLabel;
-    Memo1: TMemo;    // For user input
     SaveDialog1: TSaveDialog;
     UpdatePromptButton: TButton;
     procedure Button1Click(Sender: TObject);
@@ -79,6 +79,8 @@ type
     procedure Memo4Change(Sender: TObject);
     procedure Memo4KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure PromptComboChange(Sender: TObject);
+    procedure PromptTabContextPopup(Sender: TObject; MousePos: TPoint;
+      var Handled: Boolean);
     procedure SaveCodeButtonClick(Sender: TObject);
     procedure SaveJsonButtonClick(Sender: TObject);
     procedure ShowGamesButtonClick(Sender: TObject);
@@ -139,7 +141,7 @@ var
   object_name, field_name, field_value, object_type, object_items: String;
 begin
     FirstMessage := 1;
-     FileListBox1.Directory := DirectoryEdit1.Directory;
+    FileListBox1.Directory := DirectoryEdit1.Directory;
     // Create the conversation array
     FConversation := TJSONArray.Create;
     // Add a system message
@@ -176,7 +178,8 @@ begin
       ShowMessage(
         'A new "settings.json" file has been created at:' + sLineBreak +
         ConfigPath + sLineBreak + sLineBreak +
-        'Please open this file, fill in valid values, and rerun the application.'
+        'Please open this file, fill in valid values, ' + sLineBreak +
+        'Enter a Valid ChatGPT API Key and rerun the application.'
       );
       Application.Terminate;
       Exit;
@@ -284,6 +287,12 @@ begin
   SystemMsg.Add('content', Memo4.Text);
   FConversation.Add(SystemMsg);
   FirstMessage := 1;
+end;
+
+procedure TForm1.PromptTabContextPopup(Sender: TObject; MousePos: TPoint;
+  var Handled: Boolean);
+begin
+
 end;
 
 procedure TForm1.SaveCodeButtonClick(Sender: TObject);
@@ -474,17 +483,25 @@ var
   ModelList: TStringList;
   i: Integer;
 begin
-  //Memo2.Clear;
-  ModelList := TChatGPTCompletion.GetModelsList(Label1.Caption);
-  try
-    for i := 0 to ModelList.Count - 1 do
-    begin
-      //Memo2.Lines.Add(ModelList[i]);
-      ModelCombo.Items.Add(ModelList[i]);
+  if Label1.Caption <> '' then
+  begin
+    ModelList := TChatGPTCompletion.GetModelsList(Label1.Caption);
+    try
+      for i := 0 to ModelList.Count - 1 do
+      begin
+        //Memo2.Lines.Add(ModelList[i]);
+        ModelCombo.Items.Add(ModelList[i]);
+      end;
+    finally
+      ModelList.Free;
     end;
-  finally
-    ModelList.Free;
+  end
+  else
+  begin
+    ShowMessage('You must have a valid chat gpt API Key in you settings.json');
+    Application.Terminate;
   end;
+
 end;
 
 procedure TForm1.Button3Click(Sender: TObject);
@@ -653,23 +670,7 @@ var
   JsonFile: TStringList;
   DefaultJson: TJSONObject;
 begin
-  // Create the default JSON structure
-  DefaultJson := TJSONObject.Create;
-  try
-    DefaultJson.Add('systemPromptName', 'CI to Symfony Model Convertor');
-    DefaultJson.Add('systemPrompt', 'You are an expert coding tool and framework conversion assistant. Answer as concisely as possible the complete code, with no extraneous comments. Provide the complete solution. I am going to provide a codeignitor model. Just respond then that you got the model. When I ask "entity?" give me the complete symfony entity code with all code ignitor functions translated to their symfony equivalents with no comments just the complete code. No placeholders. When I ask "repository?" give me the complete symfony repository code with all code ignitor functions translated to their symfony equivalents no comments just the complete code, No Placeholders.');
-
-    // Save the default JSON to file
-    JsonFile := TStringList.Create;
-    try
-      JsonFile.Text := DefaultJson.AsJSON;
-      JsonFile.SaveToFile(ConfigDir + '/systemprompts.json');
-    finally
-      JsonFile.Free;
-    end;
-  finally
-    DefaultJson.Free;
-  end;
+  DefaultPromptsJson.Lines.SaveToFile(ConfigDir + '/systemprompts.json');
 end;
 
 function TForm1.PrettyPrintJSON(const RawJSON: string): string;
@@ -731,36 +732,25 @@ end;
 procedure TForm1.DeletePrompt(Index: Integer);
 begin
   try
-    // 1) Check if index is in range for the JSON array
     if (Index < 0) or (Index >= FJsonData.Count) then
     begin
       ShowMessage('Index out of bounds for JSON array');
       Exit;
     end;
-
-    // Remove the JSON object
     FJsonData.Delete(Index);
     SaveJsonData;
-
-    // 2) Check if index is in range for the combo box
     if (Index < 0) or (Index >= PromptCombo.Items.Count) then
     begin
       ShowMessage('Index out of bounds for ComboBox items');
       Exit;
     end;
-
-    // Remove the item from the combo box
     PromptCombo.Items.Delete(Index);
     PromptCombo.ItemIndex := 0;
-
-    // 3) Check if index is in range for JsonNameList
     if (Index < 0) or (Index >= JsonNameList.Count) then
     begin
       ShowMessage('Index out of bounds for JsonNameList');
       Exit;
     end;
-
-    // Remove the item from JsonNameList
     JsonNameList.Delete(Index);
 
   except
@@ -774,22 +764,16 @@ var
   PromptObject: TJSONObject;
 begin
   try
-    // 1) Validate the index for the JSON array
     if (Index < 0) or (Index >= FJsonData.Count) then
     begin
       ShowMessage('Index out of bounds for JSON array.');
       Exit;
     end;
-
-    // 2) Retrieve and cast the JSON item to TJSONObject
     PromptObject := FJsonData.Items[Index] as TJSONObject;
 
     if Assigned(PromptObject) then
     begin
-      // Update the "systemPrompt" field in your JSON object
       PromptObject.Strings['systemPrompt'] := NewSystemPrompt;
-
-      // Save changes to the JSON
       SaveJsonData;
     end
     else
@@ -797,17 +781,12 @@ begin
       ShowMessage('Unable to cast item to TJSONObject.');
       Exit;
     end;
-
-    // 3) Validate the index for JsonNameList
     if (Index < 0) or (Index >= JsonNameList.Count) then
     begin
       ShowMessage('Index out of bounds for JsonNameList.');
       Exit;
     end;
-
-    // 4) Update the corresponding entry in the string list
     JsonNameList[Index] := NewSystemPrompt;
-
   except
     on E: Exception do
       ShowMessage('Error updating prompt: ' + E.Message);
