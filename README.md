@@ -1,5 +1,14 @@
 # LazChat
 
+To run this application you must first checkout https://github.com/PaulNovack/jsproxy and then start the https proxy server
+<pre>
+  node proxy.js     
+</pre>
+
+I am using a http to https proxy because Lazarus does not support the very latest OpenSSL library that is installed on Mac OS.
+
+## Running the Application LazChat
+
 You will need to add your OpenAI key to the ~./lazOpenAI/settings.json file the application with create the file when you first run it.
 
 Fill out the settings.json and then restart the application.
