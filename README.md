@@ -13,3 +13,5 @@ Allows you to choose a LLM.
 Allows you to set a system message.
 
 Keeps history of questions and code or other resources in conversation till reset.
+
+Currently only works using ChatGPT may add ollama and some other LLM's in the future
