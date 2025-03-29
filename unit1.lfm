@@ -3,7 +3,7 @@ object Form1: TForm1
   Height = 1027
   Top = 8
   Width = 1770
-  Caption = 'Form1'
+  Caption = 'LazChat'
   ClientHeight = 1027
   ClientWidth = 1770
   OnCreate = FormCreate
