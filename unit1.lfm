@@ -11,8 +11,8 @@ object Form1: TForm1
   WindowState = wsMaximized
   object Memo1: TMemo
     Left = 256
-    Height = 784
-    Top = 120
+    Height = 680
+    Top = 224
     Width = 664
     ScrollBars = ssVertical
     TabOrder = 0
@@ -80,7 +80,7 @@ object Form1: TForm1
   object Label5: TLabel
     Left = 256
     Height = 17
-    Top = 104
+    Top = 202
     Width = 155
     Caption = 'Code / Text To Send LLM'
     Font.Height = -13
@@ -133,8 +133,8 @@ object Form1: TForm1
     Height = 784
     Top = 120
     Width = 800
-    ActivePage = PromptTab
-    TabIndex = 1
+    ActivePage = QAndATab
+    TabIndex = 0
     TabOrder = 7
     object QAndATab: TTabSheet
       Caption = 'Question and Answers'
@@ -215,8 +215,8 @@ object Form1: TForm1
       end
       object Memo4: TMemo
         Left = 3
-        Height = 248
-        Top = 88
+        Height = 256
+        Top = 80
         Width = 787
         Lines.Strings = (
           'You are an expert coding tool and framework conversion assistant.'
@@ -234,7 +234,7 @@ object Form1: TForm1
       object UpdatePromptButton: TButton
         Left = 3
         Height = 25
-        Top = 56
+        Top = 48
         Width = 213
         Caption = 'Update Prompt'
         TabOrder = 2
@@ -245,7 +245,7 @@ object Form1: TForm1
       object NewPromptButton: TButton
         Left = 333
         Height = 25
-        Top = 56
+        Top = 48
         Width = 149
         Caption = 'New Prompt'
         TabOrder = 3
@@ -254,7 +254,7 @@ object Form1: TForm1
       object PromptCombo: TComboBox
         Left = 112
         Height = 34
-        Top = 16
+        Top = 8
         Width = 672
         DropDownCount = 30
         ItemHeight = 0
@@ -265,7 +265,7 @@ object Form1: TForm1
       object DeleteButton: TButton
         Left = 227
         Height = 25
-        Top = 56
+        Top = 48
         Width = 100
         Caption = 'Delete'
         TabOrder = 5
@@ -274,7 +274,7 @@ object Form1: TForm1
       object PromptLabel: TLabel
         Left = 3
         Height = 17
-        Top = 24
+        Top = 16
         Width = 104
         Caption = 'System Prompt'
       end
@@ -297,6 +297,15 @@ object Form1: TForm1
     Width = 360
     TabOrder = 9
     Visible = False
+  end
+  object ClearCodeButton: TButton
+    Left = 424
+    Height = 25
+    Top = 194
+    Width = 232
+    Caption = 'Clear Code / Text to send to LLM'
+    TabOrder = 10
+    OnClick = ClearCodeButtonClick
   end
   object SaveDialog1: TSaveDialog
     Left = 1488

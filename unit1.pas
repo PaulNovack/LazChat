@@ -17,6 +17,7 @@ type
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
+    ClearCodeButton: TButton;
     Button5: TButton;
     Button6: TButton;
     Button7: TButton;
@@ -50,6 +51,7 @@ type
     UpdatePromptButton: TButton;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure ClearCodeButtonClick(Sender: TObject);
     procedure GetModelsButtonClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure DeleteButtonClick(Sender: TObject);
@@ -304,10 +306,13 @@ begin
     ShowMessage('Please enter a prompt in Memo1.');
     Exit;
   end;
-  if Memo1.Text = '' then
-  begin
-    ShowMessage('Please enter code in File to Sent LLM Memo.');
-    Exit;
+  if FirstMessage <> 0 then
+    begin
+    if Memo1.Text = '' then
+    begin
+      ShowMessage('Please enter code in File to Sent LLM Memo.');
+      Exit;
+    end;
   end;
 
   Temperature := StrToFloatDef(EditTemperature.Text, 0.7);
@@ -368,6 +373,12 @@ procedure TForm1.Button2Click(Sender: TObject);
 begin
   if SaveDialog1.Execute then
     Memo2.Lines.SaveToFile( SaveDialog1.Filename );
+
+end;
+
+procedure TForm1.ClearCodeButtonClick(Sender: TObject);
+begin
+  Memo1.Clear;
 end;
 
 procedure TForm1.RemoveMarkdownSyntaxFromMemo;
@@ -644,7 +655,7 @@ begin
     PromptCombo.Items.Add(NewSystemPromptName);
 
     // Keep JsonNameList in sync
-    JsonNameList.Add(NewSystemPromptName);
+    JsonNameList.Add(NewSystemPrompt);
 
     // Save the updated JSON data
     SaveJsonData;
@@ -741,7 +752,6 @@ begin
       ShowMessage('Error updating prompt: ' + E.Message);
   end;
 end;
-
 
 
 
