@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Compiler Value="/usr/bin/fpc" Date="1625802185"/>
+  <Params Value=" -MObjFPC -Scghi -Cg -O1 -gw3 -gl -l -vewnhibq -Fi/home/pnovack/2025-code/OpenAiLazarus2/lib/x86_64-linux -Fi/home/pnovack/2025-code/openai-delphi/Source -Fu/usr/share/lazarus/3.8.0/lcl/units/x86_64-linux/gtk2 -Fu/usr/share/lazarus/3.8.0/lcl/units/x86_64-linux -Fu/usr/share/lazarus/3.8.0/components/freetype/lib/x86_64-linux -Fu/usr/share/lazarus/3.8.0/components/lazutils/lib/x86_64-linux -Fu/usr/share/lazarus/3.8.0/packager/units/x86_64-linux -Fu/home/pnovack/2025-code/OpenAiLazarus2/ -FU/home/pnovack/2025-code/OpenAiLazarus2/lib/x86_64-linux/ -FE/home/pnovack/2025-code/OpenAiLazarus2/ -o/home/pnovack/2025-code/OpenAiLazarus2/LazChat -dLCL -dLCLgtk2 LazChat.lpr"/>
+</CONFIG>
