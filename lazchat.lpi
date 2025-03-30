@@ -71,6 +71,7 @@
         <Filename Value="presentationunit.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="PresentationForm"/>
+        <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="PresentationUnit"/>
       </Unit>
@@ -84,7 +85,7 @@
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir);../openai-delphi/Source"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
-      <SrcPath Value="/home/pnovack/2025-code/openai-delphi/Source"/>
+      <SrcPath Value="/home/pnovack/2025-code/openai-delphi/Source/"/>
     </SearchPaths>
     <Linking>
       <Debugging>

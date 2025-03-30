@@ -1,7 +1,7 @@
 object NewPromptForm: TNewPromptForm
-  Left = 628
+  Left = 4271
   Height = 321
-  Top = 353
+  Top = 585
   Width = 519
   Caption = 'New Prompt'
   ClientHeight = 321
