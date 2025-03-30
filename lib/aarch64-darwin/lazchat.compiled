@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CONFIG>
+  <Compiler Value="/opt/homebrew/Cellar/fpc/3.2.2_1/bin/fpc" Date="1621030933"/>
+  <Params Value=" -MObjFPC -Scghi -O1 -gw3 -gl -k-framework -kCocoa -k-weak_framework -kUserNotifications -l -vewnhibq -Fi/Users/paulnovack/code/OpenAILazarus2/lib/aarch64-darwin -Fi/Users/paulnovack/code/openai-delphi/Source -Fu/Users/paulnovack/Downloads/lazarus/components/synedit/units/aarch64-darwin/cocoa -Fu/Users/paulnovack/Downloads/lazarus/lcl/units/aarch64-darwin/cocoa -Fu/Users/paulnovack/Downloads/lazarus/lcl/units/aarch64-darwin -Fu/Users/paulnovack/Downloads/lazarus/components/freetype/lib/aarch64-darwin -Fu/Users/paulnovack/Downloads/lazarus/components/lazutils/lib/aarch64-darwin -Fu/Users/paulnovack/Downloads/lazarus/packager/units/aarch64-darwin -Fu/Users/paulnovack/code/OpenAILazarus2/ -FU/Users/paulnovack/code/OpenAILazarus2/lib/aarch64-darwin/ -FE/Users/paulnovack/code/OpenAILazarus2/ -o/Users/paulnovack/code/OpenAILazarus2/lazchat -dLCL -dLCLcocoa lazchat.lpr"/>
+</CONFIG>

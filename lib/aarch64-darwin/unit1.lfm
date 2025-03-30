@@ -1,0 +1,449 @@
+object Form1: TForm1
+  Left = -1840
+  Height = 962
+  Top = 43
+  Width = 1790
+  Caption = 'LazChat'
+  ClientHeight = 962
+  ClientWidth = 1790
+  OnCreate = FormCreate
+  OnShow = FormShow
+  LCLVersion = '3.8.0.0'
+  WindowState = wsMaximized
+  object Label1: TLabel
+    Left = 32
+    Height = 1
+    Top = 8
+    Width = 1
+    Visible = False
+    OnClick = Label1Click
+  end
+  object PageControl1: TPageControl
+    Left = 1089
+    Height = 962
+    Top = 0
+    Width = 701
+    ActivePage = QAndATab
+    Align = alRight
+    TabIndex = 0
+    TabOrder = 0
+    object QAndATab: TTabSheet
+      Caption = 'Question and Answers'
+      ClientHeight = 926
+      ClientWidth = 695
+      object Button3: TButton
+        Left = 200
+        Height = 25
+        Top = 42
+        Width = 280
+        Caption = 'Clear Question and Response Memo Text'
+        TabOrder = 0
+        OnClick = Button3Click
+      end
+      object Label3: TLabel
+        Left = 8
+        Height = 16
+        Top = 48
+        Width = 184
+        Caption = 'Question and Response Memo'
+      end
+      object Button1: TButton
+        Left = 8
+        Height = 29
+        Top = 8
+        Width = 160
+        Caption = 'Get LLM Response'
+        TabOrder = 1
+        OnClick = Button1Click
+      end
+      object Button6: TButton
+        Left = 186
+        Height = 29
+        Top = 8
+        Width = 184
+        Caption = 'Reset Conversation'
+        TabOrder = 2
+        OnClick = Button5Click
+      end
+      object Button2: TButton
+        Left = 384
+        Height = 25
+        Top = 8
+        Width = 155
+        Caption = 'Save Q and R Memo'
+        TabOrder = 3
+        OnClick = Button2Click
+      end
+      object UseQAndR: TCheckBox
+        Left = 504
+        Height = 18
+        Top = 46
+        Width = 176
+        Caption = 'Use Q and R for user input'
+        TabOrder = 4
+        OnChange = UseQAndRChange
+      end
+      object Memo2: TMemo
+        Left = 0
+        Height = 854
+        Top = 72
+        Width = 695
+        Align = alBottom
+        ScrollBars = ssVertical
+        TabOrder = 5
+      end
+    end
+    object PromptTab: TTabSheet
+      Caption = 'System Prompt and JSON Sent'
+      ClientHeight = 926
+      ClientWidth = 695
+      OnContextPopup = PromptTabContextPopup
+      object Memo3: TMemo
+        Left = 0
+        Height = 660
+        Top = 266
+        Width = 695
+        Align = alBottom
+        ScrollBars = ssVertical
+        TabOrder = 0
+      end
+      object Label4: TLabel
+        Left = 8
+        Height = 16
+        Top = 333
+        Width = 140
+        Caption = 'JSON Sent to ChatGPT'
+      end
+      object Memo4: TMemo
+        Left = 3
+        Height = 246
+        Top = 80
+        Width = 702
+        Lines.Strings = (
+          'You are an expert coding tool and framework conversion assistant.'
+          'Answer as concisely as possible the complete code, with no extraneous comments.'
+          'Provide the complete solution. I am going to provide a codeignitor model.'
+          'Just respond then that you got the model.'
+          'When I ask "entity?" give me the complete symfony entity code with all code ignitor functions translated to their symfony equivalents with no comments just the complete code. No placeholders. '
+          'When I ask "repository?" give me the complete symfony repository  code with all code ignitor functions translated to their symfony equivalents no comments just the complete code, No Placeholders.'
+          '  '
+        )
+        ScrollBars = ssVertical
+        TabOrder = 1
+        OnChange = Memo4Change
+        OnKeyUp = Memo4KeyUp
+      end
+      object UpdatePromptButton: TButton
+        Left = 160
+        Height = 25
+        Top = 48
+        Width = 213
+        Caption = 'Update Prompt'
+        TabOrder = 2
+        Visible = False
+        OnClick = UpdatePromptButtonClick
+        OnKeyUp = UpdatePromptButtonKeyUp
+      end
+      object NewPromptButton: TButton
+        Left = 8
+        Height = 25
+        Top = 48
+        Width = 149
+        Caption = 'New Prompt'
+        TabOrder = 3
+        OnClick = NewPromptButtonClick
+      end
+      object PromptCombo: TComboBox
+        Left = 90
+        Height = 20
+        Top = 13
+        Width = 502
+        DropDownCount = 30
+        ItemHeight = 18
+        TabOrder = 4
+        Text = 'PromptCombo'
+        OnChange = PromptComboChange
+      end
+      object DeleteButton: TButton
+        Left = 376
+        Height = 25
+        Top = 48
+        Width = 157
+        Caption = 'Delete Prompt'
+        TabOrder = 5
+        OnClick = DeleteButtonClick
+      end
+      object PromptLabel: TLabel
+        Left = 3
+        Height = 16
+        Top = 16
+        Width = 93
+        Caption = 'System Prompt'
+      end
+    end
+  end
+  object Panel1: TPanel
+    Left = 0
+    Height = 962
+    Top = 0
+    Width = 1089
+    Align = alClient
+    Caption = 'Panel1'
+    ClientHeight = 962
+    ClientWidth = 1089
+    TabOrder = 1
+    object Splitter1: TSplitter
+      Left = 1083
+      Height = 801
+      Top = 160
+      Width = 5
+      Align = alRight
+      ResizeAnchor = akRight
+    end
+    object Panel2: TPanel
+      Left = 1
+      Height = 159
+      Top = 1
+      Width = 1087
+      Align = alTop
+      ClientHeight = 159
+      ClientWidth = 1087
+      TabOrder = 1
+      OnClick = Panel2Click
+      object Label2: TLabel
+        Left = 10
+        Height = 16
+        Top = 138
+        Width = 280
+        Caption = 'Double Click to Open File in Code / Text Memo'
+        WordWrap = True
+      end
+      object DirectoryEdit1: TDirectoryEdit
+        Left = 16
+        Height = 21
+        Top = 104
+        Width = 403
+        Directory = '/Users/paulnovack/git/fu/application/models'
+        ShowHidden = False
+        ButtonWidth = 23
+        NumGlyphs = 1
+        MaxLength = 0
+        TabOrder = 0
+        OnChange = DirectoryEdit1Change
+        Text = '/Users/paulnovack/git/fu/application/models'
+      end
+      object Label10: TLabel
+        Left = 16
+        Height = 16
+        Top = 74
+        Width = 163
+        Caption = 'Select Directory to list files'
+      end
+      object Label8: TLabel
+        Left = 26
+        Height = 16
+        Top = 13
+        Width = 71
+        Caption = 'Max Tokens'
+      end
+      object EditMaxTokens: TEdit
+        Left = 96
+        Height = 21
+        Top = 8
+        Width = 64
+        TabOrder = 1
+        Text = '8192'
+      end
+      object EditTemperature: TEdit
+        Left = 256
+        Height = 21
+        Top = 9
+        Width = 48
+        TabOrder = 2
+        Text = '0.2'
+      end
+      object Label9: TLabel
+        Left = 179
+        Height = 16
+        Top = 13
+        Width = 77
+        Caption = 'Temperature'
+      end
+      object Label7: TLabel
+        Left = 320
+        Height = 16
+        Top = 13
+        Width = 41
+        Caption = 'Model:'
+        Font.Height = -13
+        Font.Name = 'Sans'
+        ParentFont = False
+      end
+      object ModelCombo: TComboBox
+        Left = 368
+        Height = 20
+        Top = 9
+        Width = 206
+        DropDownCount = 35
+        ItemHeight = 18
+        Sorted = True
+        TabOrder = 3
+        Text = 'gpt-4o-mini'
+      end
+      object SaveCodeButton: TButton
+        Left = 429
+        Height = 24
+        Top = 105
+        Width = 200
+        Caption = 'Save Overwrite Source File'
+        TabOrder = 4
+        OnClick = SaveCodeButtonClick
+      end
+      object Label5: TLabel
+        Left = 437
+        Height = 16
+        Top = 130
+        Width = 151
+        Caption = 'Code / Text To Send LLM'
+        Font.Height = -13
+        Font.Name = 'Sans'
+        ParentFont = False
+      end
+      object ClearCodeButton: TButton
+        Left = 429
+        Height = 24
+        Top = 129
+        Width = 232
+        Caption = 'Clear Code / Text to send to LLM'
+        TabOrder = 5
+        OnClick = ClearCodeButtonClick
+      end
+      object UseCodeCheck: TCheckBox
+        Left = 669
+        Height = 18
+        Top = 134
+        Width = 235
+        Caption = 'Use Code / Text Memo for User Input'
+        Checked = True
+        State = cbChecked
+        TabOrder = 6
+        OnChange = UseCodeCheckChange
+      end
+      object CopyFromQAToCodeButton: TButton
+        Left = 952
+        Height = 24
+        Top = 133
+        Width = 128
+        Caption = '<-- Paste Memo'
+        TabOrder = 7
+        OnClick = CopyFromQAToCodeButtonClick
+      end
+      object DefaultPromptsJson: TMemo
+        Left = 770
+        Height = 37
+        Top = 66
+        Width = 70
+        Lines.Strings = (
+          '[{ "systemPromptName" : "CI to Symfony Model Convertor", "systemPrompt" : "You are an expert coding tool and framework conversion assistant. Answer as concisely as possible the complete code, with no extraneous comments. Provide the complete solution. I am going to provide a codeignitor model. Just respond then that you got the model. When I ask \"entity?\" give me the complete symfony entity code with all code ignitor functions translated to their symfony equivalents with no comments just the complete code. No placeholders. When I ask \"repository?\" give me the complete symfony repository code with all code ignitor functions translated to their symfony equivalents no comments just the complete code, No Placeholders." }, { "systemPromptName" : "Json to CSV", "systemPrompt" : "You are an expert coding tool and framework conversion assistant. Answer as concisely as possible the complete code, with no extraneous comments. Provide the complete solution. I am going to provide a Json structure. Give me complete csv data back as a response. " }, { "systemPromptName" : "Symfony Model from mySQL Create table", "systemPrompt" : "You are an expert coding tool and framework conversion assistant. Answer as concisely as possible the complete code, with no extraneous comments. Provide the complete solution. Do not include any  comments. I am going to provide a mysql table create query.  Provide for me a symfony model for the mysql table." }, { "systemPromptName" : "Format with 2 spaces for tabs", "systemPrompt" : "You are a specialized PHP code refactoring assistant. Please transform the given code as follows:\n\n1. **Two-Space Indentation**  \n   - Convert all indentation to exactly 2 spaces (no tabs).\n   - Keep the overall structure and content of the code otherwise unchanged.\n\n2. **Sort `use` Statements Alphabetically**  \n   - Find all top-level `use` statements (e.g., `use Carbon\\Carbon;`).\n   - Sort them in alphabetical order by the segment after the last backslash.  \n   - Keep each `use` statement on its own line.\n   - Preserve everything else (comments, blank lines) around them if possible.\n\n3. **Sort `private $variables` Alphabetically**  \n   - Inside the class, identify **each private property declaration** that matches the pattern:\n     ```\n     /**\n      * optional docblock/annotations\n      */\n     private $variableName [= someValue];\n     ```\n     or simply  \n     ```\n     private $variableName;\n     ```\n   - For each such property:\n     - **Capture** the entire block above it (any docblock, comments, ORM annotations, etc.) that directly belongs to that property.\n     - Treat that block plus the `private $variableName...;` line as **one unit**.\n   - Collect these property units in an internal list.\n   - **Sort** these units in **strict alphabetical order** by the variable name that follows `private $`.  \n     - Ignore the `$` symbol. For example, `$employee` comes before `$employeeId` which comes before `$guestCount`, etc.\n   - After sorting, **place them back** together in the same region of the class where they originally appeared, but now in alphabetical order.\n   - Do not rename variables or remove content — simply reorder these private property blocks.\n\n4. **Sort Functions/Methods Alphabetically**  \n   - Identify all method definitions (e.g., `public function foo(...)`, `protected function bar(...)`, `private function baz(...)`).\n   - Sort them alphabetically by the function name (ignore the word `public`, `protected`, or `private`).\n   - Keep the entire method body and any docblocks/annotations with it.\n\n5. **Sort Constructor Initializations Alphabetically** (if present)  \n   - If there is a `__construct()` method that initializes multiple properties, reorder those lines in alphabetical order by the property name after `$this->`.\n   - Keep any comments for each assignment with the correct line.\n\n### Important Formatting Notes\n\n- **Only output the final refactored PHP code** and nothing else (no explanation, no code fences).\n- Maintain the original code’s overall structure (class definition, method bodies, docblocks, etc.).\n- If any step (like sorting private variables or constructor assignments) doesn’t apply (e.g., no constructor code), simply do nothing for that step.\n\n**End of instructions.**\n\n" }, { "systemPromptName" : "Javascript Check undefined", "systemPrompt" : "You are an expert coding tool and framework conversion assistant. Answer as concisely as possible the complete code, with no extraneous comments. Provide the complete solution.  I am going to give you a javascript file and I want you to put in checking for if object is undefined to avoid errors on variables / objects" }, { "systemPromptName" : "Format Json File", "systemPrompt" : "You are an expert coding tool and framework conversion assistant. Answer as concisely as possible the complete code, with no extraneous comments. Provide the complete solution. I am going to provide an unformatted JSON file I want you to format it using 2 spaces for indents" }, { "systemPromptName" : "Secret Animal", "systemPrompt" : "You are the host of a guessing game where the AI knows a secret animal. The user will ask yes/no questions or make guesses. You must only answer “Yes” or “No” to questions, and if the user tries to directly guess the animal, you say whether they are correct. If they guess correctly, reveal the animal and end the game." }]'
+        )
+        TabOrder = 8
+        Visible = False
+      end
+      object ShowGamesButton: TButton
+        Left = 696
+        Height = 24
+        Top = 70
+        Width = 19
+        Caption = 'Show Games'
+        TabOrder = 9
+        Visible = False
+        OnClick = ShowGamesButtonClick
+      end
+      object ClassNameEdit: TEdit
+        Left = 672
+        Height = 21
+        Top = 62
+        Width = 16
+        TabOrder = 10
+        Visible = False
+      end
+      object Button7: TButton
+        Left = 656
+        Height = 29
+        Top = 66
+        Width = 16
+        Caption = 'GetClassName'
+        TabOrder = 11
+        Visible = False
+        OnClick = Button7Click
+      end
+      object GetModelsButton: TButton
+        Left = 640
+        Height = 27
+        Top = 66
+        Width = 16
+        Caption = 'Get Models List'
+        TabOrder = 12
+        Visible = False
+        OnClick = GetModelsButtonClick
+      end
+      object Button4: TButton
+        Left = 664
+        Height = 25
+        Top = 22
+        Width = 75
+        Caption = 'Show Presentation'
+        TabOrder = 13
+        Visible = False
+        OnClick = Button4Click
+      end
+    end
+    object Panel3: TPanel
+      Left = 1
+      Height = 801
+      Top = 160
+      Width = 414
+      Align = alLeft
+      Caption = 'Panel3'
+      ClientHeight = 801
+      ClientWidth = 414
+      TabOrder = 2
+      object FileListBox1: TFileListBox
+        Left = 1
+        Height = 799
+        Top = 1
+        Width = 412
+        Align = alClient
+        Directory = '/home/pnovack/2025-code/OpenAILazChat'
+        Font.CharSet = ANSI_CHARSET
+        Font.Height = -14
+        Font.Name = 'Verdana'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ItemHeight = 0
+        OnDblClick = FileListBox1DblClick
+        ParentFont = False
+        TabOrder = 0
+      end
+    end
+    object Memo1: TMemo
+      Left = 415
+      Height = 801
+      Top = 160
+      Width = 668
+      Align = alClient
+      ScrollBars = ssVertical
+      TabOrder = 3
+    end
+  end
+  object SaveDialog1: TSaveDialog
+    Left = 1024
+    Top = 72
+  end
+  object SynPHPSyn1: TSynPHPSyn
+    DefaultFilter = 'PHP Files (*.php,*.php3,*.phtml,*.inc)|*.php;*.php3;*.phtml;*.inc'
+    Enabled = False
+    Left = 546
+    Top = 69
+  end
+end

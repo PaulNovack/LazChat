@@ -35,7 +35,8 @@ type
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
-    Memo2: TSynEdit;
+    Memo1: TMemo;
+    Memo2: TMemo;
     ModelCombo: TComboBox;
     Panel1: TPanel;
     Panel2: TPanel;
@@ -43,7 +44,6 @@ type
     SaveCodeButton: TButton;
     ShowGamesButton: TButton;
     Splitter1: TSplitter;
-    Memo1: TSynEdit;
     SynPHPSyn1: TSynPHPSyn;
     UseCodeCheck: TCheckBox;
     UseQAndR: TCheckBox;
