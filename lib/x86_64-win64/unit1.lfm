@@ -1,7 +1,7 @@
 object Form1: TForm1
-  Left = 2508
+  Left = 2413
   Height = 1027
-  Top = 185
+  Top = 685
   Width = 2252
   Caption = 'LazChat'
   ClientHeight = 1027
@@ -24,9 +24,9 @@ object Form1: TForm1
     Height = 1027
     Top = 0
     Width = 876
-    ActivePage = QAndATab
+    ActivePage = PromptTab
     Align = alRight
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 0
     object QAndATab: TTabSheet
       Caption = 'Question and Answers'
@@ -101,8 +101,8 @@ object Form1: TForm1
       OnContextPopup = PromptTabContextPopup
       object Memo3: TMemo
         Left = 0
-        Height = 771
-        Top = 223
+        Height = 554
+        Top = 440
         Width = 868
         Align = alBottom
         ScrollBars = ssVertical
@@ -111,13 +111,13 @@ object Form1: TForm1
       object Label4: TLabel
         Left = 10
         Height = 20
-        Top = 420
+        Top = 416
         Width = 146
         Caption = 'JSON Sent to ChatGPT'
       end
       object Memo4: TMemo
         Left = 4
-        Height = 310
+        Height = 308
         Top = 100
         Width = 878
         Lines.Strings = (
@@ -155,10 +155,10 @@ object Form1: TForm1
         OnClick = NewPromptButtonClick
       end
       object PromptCombo: TComboBox
-        Left = 140
+        Left = 112
         Height = 28
-        Top = 10
-        Width = 740
+        Top = 16
+        Width = 628
         DropDownCount = 30
         ItemHeight = 20
         TabOrder = 4
@@ -210,6 +210,7 @@ object Form1: TForm1
       ClientHeight = 199
       ClientWidth = 1374
       TabOrder = 1
+      OnClick = Panel2Click
       object Label2: TLabel
         Left = 12
         Height = 20
@@ -386,6 +387,15 @@ object Form1: TForm1
         TabOrder = 12
         Visible = False
         OnClick = GetModelsButtonClick
+      end
+      object Button4: TButton
+        Left = 830
+        Height = 31
+        Top = 28
+        Width = 94
+        Caption = 'Button4'
+        TabOrder = 13
+        OnClick = Button4Click
       end
     end
     object Panel3: TPanel

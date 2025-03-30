@@ -8,7 +8,7 @@ uses
   Classes, SysUtils, Forms, Controls, TypInfo, Graphics, Dialogs, StdCtrls,
   FileCtrl, ComboEx, ShellCtrls, EditBtn, Menus, ComCtrls, ExtCtrls, SynEdit,
   SynHighlighterPHP, fpjson, jsonparser, uchatOllama, uChatGpt,
-  RegExpr, Unit2, GamesUnit, Types;
+  RegExpr, Unit2, GamesUnit, Types, PresentationUnit;
 
 type
 
@@ -18,6 +18,7 @@ type
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
+    Button4: TButton;
     Button7: TButton;
     ClassNameEdit: TEdit;
     ClearCodeButton: TButton;
@@ -64,6 +65,7 @@ type
     UpdatePromptButton: TButton;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
     procedure ClearCodeButtonClick(Sender: TObject);
     procedure CopyFromQAToCodeButtonClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -82,6 +84,7 @@ type
     procedure Memo1Change(Sender: TObject);
     procedure Memo4Change(Sender: TObject);
     procedure Memo4KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure Panel2Click(Sender: TObject);
     procedure PromptComboChange(Sender: TObject);
     procedure PromptTabContextPopup(Sender: TObject; MousePos: TPoint;
       var Handled: Boolean);
@@ -279,6 +282,11 @@ begin
   UpdatePromptButton.visible := True;
 end;
 
+procedure TForm1.Panel2Click(Sender: TObject);
+begin
+
+end;
+
 procedure TForm1.PromptComboChange(Sender: TObject);
 var
   SystemMsg: TJSONObject;
@@ -441,6 +449,11 @@ begin
   if SaveDialog1.Execute then
     Memo2.Lines.SaveToFile( SaveDialog1.Filename );
 
+end;
+
+procedure TForm1.Button4Click(Sender: TObject);
+begin
+  PresentationForm.Show;
 end;
 
 procedure TForm1.ClearCodeButtonClick(Sender: TObject);
