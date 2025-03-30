@@ -62,8 +62,8 @@ LazChat is an AI-assisted chat application built using Lazarus. It allows you to
 
 ---
 
-![Main Window](MainWindow.png)
+Usage Guide Video link is below:
 
-[![Usage Video](https://img.youtube.com/vi/0um7ows0Mww/0.jpg)](https://www.youtube.com/watch?v=0um7ows0Mww)
+[![Usage Video](MainWindow.png)](https://www.youtube.com/watch?v=0um7ows0Mww)
 
 
