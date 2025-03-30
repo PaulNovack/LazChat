@@ -101,6 +101,7 @@ object Form1: TForm1
         Gutter.MouseActions = <>
         RightGutter.Width = 0
         RightGutter.MouseActions = <>
+        Highlighter = SynPHPSyn1
         Keystrokes = <        
           item
             Command = ecUp
@@ -818,9 +819,9 @@ object Form1: TForm1
         OnChange = UseCodeCheckChange
       end
       object CopyFromQAToCodeButton: TButton
-        Left = 909
+        Left = 952
         Height = 24
-        Top = 129
+        Top = 133
         Width = 128
         Caption = '<-- Paste Memo'
         TabOrder = 7
@@ -932,6 +933,7 @@ object Form1: TForm1
       Gutter.MouseActions = <>
       RightGutter.Width = 0
       RightGutter.MouseActions = <>
+      Highlighter = SynPHPSyn1
       Keystrokes = <      
         item
           Command = ecUp
