@@ -31,9 +31,6 @@
         <PackageName Value="SynEdit"/>
       </Item>
       <Item>
-        <PackageName Value="CEF4Delphi_Lazarus"/>
-      </Item>
-      <Item>
         <PackageName Value="LCL"/>
       </Item>
     </RequiredPackages>
@@ -80,7 +77,7 @@
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir);../openai-delphi/Source"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
-      <SrcPath Value="/home/pnovack/2025-code/openai-delphi/Source/"/>
+      <SrcPath Value="/home/pnovack/2025-code/openai-delphi/Source"/>
     </SearchPaths>
     <Linking>
       <Debugging>

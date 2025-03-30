@@ -7,7 +7,7 @@ interface
 uses
   Classes, SysUtils, Forms, Controls, TypInfo, Graphics, Dialogs, StdCtrls,
   FileCtrl, ComboEx, ShellCtrls, EditBtn, Menus, ComCtrls, SynEdit,
-  SynHighlighterPHP, uCEFChromium, fpjson, jsonparser, uchatOllama, uChatGpt,
+  SynHighlighterPHP, fpjson, jsonparser, uchatOllama, uChatGpt,
   RegExpr, Unit2, GamesUnit, Types;
 
 type
@@ -19,12 +19,12 @@ type
     Button2: TButton;
     Button3: TButton;
     DefaultPromptsJson: TMemo;
+    Memo1: TMemo;
+    Memo2: TMemo;
     SaveCodeButton: TButton;
     CopyFromQAToCodeButton: TButton;
     Label10: TLabel;
     ShowGamesButton: TButton;
-    Memo2: TSynEdit;
-    Memo1: TSynEdit;
     SynPHPSyn1: TSynPHPSyn;
     UseCodeCheck: TCheckBox;
     UseQAndR: TCheckBox;
@@ -63,6 +63,7 @@ type
     procedure Button2Click(Sender: TObject);
     procedure ClearCodeButtonClick(Sender: TObject);
     procedure CopyFromQAToCodeButtonClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure GetModelsButtonClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure DeleteButtonClick(Sender: TObject);
@@ -449,6 +450,11 @@ begin
      Memo1.Text := Memo2.Text;
 end;
 
+procedure TForm1.FormShow(Sender: TObject);
+begin
+  ModelCombo.Text := 'gpt-4o-mini';
+end;
+
 procedure TForm1.RemoveMarkdownSyntaxFromMemo;
 var
   RegExp: TRegExpr;
@@ -495,13 +501,14 @@ begin
     finally
       ModelList.Free;
     end;
+    ModelCombo.Text := 'gpt-4o-mini';
   end
   else
   begin
     ShowMessage('You must have a valid chat gpt API Key in you settings.json');
     Application.Terminate;
   end;
-
+  ModelCombo.Text := 'gpt-4o-mini';
 end;
 
 procedure TForm1.Button3Click(Sender: TObject);
