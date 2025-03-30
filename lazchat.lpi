@@ -31,9 +31,6 @@
         <PackageName Value="SynEdit"/>
       </Item>
       <Item>
-        <PackageName Value="CEF4Delphi_Lazarus"/>
-      </Item>
-      <Item>
         <PackageName Value="LCL"/>
       </Item>
     </RequiredPackages>
@@ -69,6 +66,14 @@
         <ComponentName Value="GamesForm"/>
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="GamesUnit"/>
+      </Unit>
+      <Unit>
+        <Filename Value="presentationunit.pas"/>
+        <IsPartOfProject Value="True"/>
+        <ComponentName Value="PresentationForm"/>
+        <HasResources Value="True"/>
+        <ResourceBaseClass Value="Form"/>
+        <UnitName Value="PresentationUnit"/>
       </Unit>
     </Units>
   </ProjectOptions>

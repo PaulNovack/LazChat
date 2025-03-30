@@ -6,9 +6,9 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, TypInfo, Graphics, Dialogs, StdCtrls,
-  FileCtrl, ComboEx, ShellCtrls, EditBtn, Menus, ComCtrls, SynEdit,
-  SynHighlighterPHP, uCEFChromium, fpjson, jsonparser, uchatOllama, uChatGpt,
-  RegExpr, Unit2, GamesUnit, Types;
+  FileCtrl, ComboEx, ShellCtrls, EditBtn, Menus, ComCtrls, ExtCtrls, SynEdit,
+  SynHighlighterPHP, fpjson, jsonparser, uchatOllama, uChatGpt,
+  RegExpr, Unit2, GamesUnit, Types, PresentationUnit;
 
 type
 
@@ -18,29 +18,41 @@ type
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
-    DefaultPromptsJson: TMemo;
-    SaveCodeButton: TButton;
+    Button4: TButton;
+    Button7: TButton;
+    ClassNameEdit: TEdit;
+    ClearCodeButton: TButton;
     CopyFromQAToCodeButton: TButton;
+    DefaultPromptsJson: TMemo;
+    DirectoryEdit1: TDirectoryEdit;
+    EditMaxTokens: TEdit;
+    EditTemperature: TEdit;
+    FileListBox1: TFileListBox;
+    GetModelsButton: TButton;
     Label10: TLabel;
-    ShowGamesButton: TButton;
+    Label2: TLabel;
+    Label5: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
     Memo2: TSynEdit;
+    ModelCombo: TComboBox;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
+    SaveCodeButton: TButton;
+    ShowGamesButton: TButton;
+    Splitter1: TSplitter;
     Memo1: TSynEdit;
     SynPHPSyn1: TSynPHPSyn;
     UseCodeCheck: TCheckBox;
     UseQAndR: TCheckBox;
-    ClearCodeButton: TButton;
     Button5: TButton;
     Button6: TButton;
-    Button7: TButton;
-    ClassNameEdit: TEdit;
     DeleteButton: TButton;
-    GetModelsButton: TButton;
-    Label2: TLabel;
     PromptLabel: TLabel;
     Label3: TLabel;
     Label4: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
     Memo3: TMemo;
     Memo4: TMemo;
     NewPromptButton: TButton;
@@ -48,21 +60,15 @@ type
     PromptCombo: TComboBox;
     QAndATab: TTabSheet;
     PromptTab: TTabSheet;
-    ModelCombo: TComboBox;
-    DirectoryEdit1: TDirectoryEdit;
-    EditMaxTokens: TEdit;
-    EditTemperature: TEdit;
-    FileListBox1: TFileListBox;
     Label1: TLabel;  // Holds the API key
-    Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
     SaveDialog1: TSaveDialog;
     UpdatePromptButton: TButton;
     procedure Button1Click(Sender: TObject);
     procedure Button2Click(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
     procedure ClearCodeButtonClick(Sender: TObject);
     procedure CopyFromQAToCodeButtonClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
     procedure GetModelsButtonClick(Sender: TObject);
     procedure Button3Click(Sender: TObject);
     procedure DeleteButtonClick(Sender: TObject);
@@ -78,6 +84,7 @@ type
     procedure Memo1Change(Sender: TObject);
     procedure Memo4Change(Sender: TObject);
     procedure Memo4KeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure Panel2Click(Sender: TObject);
     procedure PromptComboChange(Sender: TObject);
     procedure PromptTabContextPopup(Sender: TObject; MousePos: TPoint;
       var Handled: Boolean);
@@ -275,6 +282,11 @@ begin
   UpdatePromptButton.visible := True;
 end;
 
+procedure TForm1.Panel2Click(Sender: TObject);
+begin
+
+end;
+
 procedure TForm1.PromptComboChange(Sender: TObject);
 var
   SystemMsg: TJSONObject;
@@ -439,6 +451,11 @@ begin
 
 end;
 
+procedure TForm1.Button4Click(Sender: TObject);
+begin
+  PresentationForm.Show;
+end;
+
 procedure TForm1.ClearCodeButtonClick(Sender: TObject);
 begin
   Memo1.Clear;
@@ -447,6 +464,11 @@ end;
 procedure TForm1.CopyFromQAToCodeButtonClick(Sender: TObject);
 begin
      Memo1.Text := Memo2.Text;
+end;
+
+procedure TForm1.FormShow(Sender: TObject);
+begin
+  ModelCombo.Text := 'gpt-4o-mini';
 end;
 
 procedure TForm1.RemoveMarkdownSyntaxFromMemo;
@@ -495,13 +517,14 @@ begin
     finally
       ModelList.Free;
     end;
+    ModelCombo.Text := 'gpt-4o-mini';
   end
   else
   begin
     ShowMessage('You must have a valid chat gpt API Key in you settings.json');
     Application.Terminate;
   end;
-
+  ModelCombo.Text := 'gpt-4o-mini';
 end;
 
 procedure TForm1.Button3Click(Sender: TObject);

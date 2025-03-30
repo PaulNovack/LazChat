@@ -1,0 +1,35 @@
+object PresentationForm: TPresentationForm
+  Left = 4123
+  Height = 291
+  Top = 422
+  Width = 337
+  Caption = 'Presentation Form'
+  ClientHeight = 291
+  ClientWidth = 337
+  FormStyle = fsStayOnTop
+  OnCreate = FormCreate
+  Position = poOwnerFormCenter
+  LCLVersion = '3.8.0.0'
+  object Memo1: TMemo
+    Left = 0
+    Height = 259
+    Top = 32
+    Width = 337
+    Align = alBottom
+    Font.CharSet = ANSI_CHARSET
+    Font.Height = -18
+    Font.Pitch = fpVariable
+    Font.Quality = fqDraft
+    ParentFont = False
+    TabOrder = 0
+  end
+  object Button1: TButton
+    Left = 250
+    Height = 25
+    Top = 0
+    Width = 75
+    Caption = 'Clear'
+    TabOrder = 1
+    OnClick = Button1Click
+  end
+end
