@@ -1,6 +1,6 @@
 # LazChat
 
-LazChat is an AI-assisted chat application built using Lazarus. It allows you to interact with OpenAI models (and potentially other local LLMs in the future) in a convenient UI, with functionality to open, edit, and save files during the conversation.
+LazChat is an AI-assisted chat application built using Lazarus. It allows you to interact with OpenAI models (and potentially other local LLMs in the future) in a convenient UI, with functionality to open, edit, and save files during the conversation.  The application can run on Windows, Linux and Mac OS.
 
 ---
 
