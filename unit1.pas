@@ -6,7 +6,7 @@ interface
 
 uses
   Classes, SysUtils, Forms, Controls, TypInfo, Graphics, Dialogs, StdCtrls,
-  FileCtrl, ComboEx, ShellCtrls, EditBtn, Menus, ComCtrls, SynEdit,
+  FileCtrl, ComboEx, ShellCtrls, EditBtn, Menus, ComCtrls, ExtCtrls, SynEdit,
   SynHighlighterPHP, fpjson, jsonparser, uchatOllama, uChatGpt,
   RegExpr, Unit2, GamesUnit, Types;
 
@@ -18,29 +18,40 @@ type
     Button1: TButton;
     Button2: TButton;
     Button3: TButton;
+    Button7: TButton;
+    ClassNameEdit: TEdit;
+    ClearCodeButton: TButton;
+    CopyFromQAToCodeButton: TButton;
     DefaultPromptsJson: TMemo;
+    DirectoryEdit1: TDirectoryEdit;
+    EditMaxTokens: TEdit;
+    EditTemperature: TEdit;
+    FileListBox1: TFileListBox;
+    GetModelsButton: TButton;
+    Label10: TLabel;
+    Label2: TLabel;
+    Label5: TLabel;
+    Label7: TLabel;
+    Label8: TLabel;
+    Label9: TLabel;
     Memo1: TMemo;
     Memo2: TMemo;
+    ModelCombo: TComboBox;
+    Panel1: TPanel;
+    Panel2: TPanel;
+    Panel3: TPanel;
     SaveCodeButton: TButton;
-    CopyFromQAToCodeButton: TButton;
-    Label10: TLabel;
     ShowGamesButton: TButton;
+    Splitter1: TSplitter;
     SynPHPSyn1: TSynPHPSyn;
     UseCodeCheck: TCheckBox;
     UseQAndR: TCheckBox;
-    ClearCodeButton: TButton;
     Button5: TButton;
     Button6: TButton;
-    Button7: TButton;
-    ClassNameEdit: TEdit;
     DeleteButton: TButton;
-    GetModelsButton: TButton;
-    Label2: TLabel;
     PromptLabel: TLabel;
     Label3: TLabel;
     Label4: TLabel;
-    Label8: TLabel;
-    Label9: TLabel;
     Memo3: TMemo;
     Memo4: TMemo;
     NewPromptButton: TButton;
@@ -48,15 +59,7 @@ type
     PromptCombo: TComboBox;
     QAndATab: TTabSheet;
     PromptTab: TTabSheet;
-    ModelCombo: TComboBox;
-    DirectoryEdit1: TDirectoryEdit;
-    EditMaxTokens: TEdit;
-    EditTemperature: TEdit;
-    FileListBox1: TFileListBox;
     Label1: TLabel;  // Holds the API key
-    Label5: TLabel;
-    Label6: TLabel;
-    Label7: TLabel;
     SaveDialog1: TSaveDialog;
     UpdatePromptButton: TButton;
     procedure Button1Click(Sender: TObject);
