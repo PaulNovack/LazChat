@@ -73,6 +73,8 @@ begin
     HttpClient.AllowRedirect := True;
     HttpClient.IOTimeout := 100000;
     HttpClient.ConnectTimeout := 100000;
+    HttpClient.IOTimeout := 100000;
+
 
     try
       // Perform POST

@@ -16,14 +16,16 @@ type
 
   TForm1 = class(TForm)
     Button1: TButton;
-    Button2: TButton;
-    Button3: TButton;
+    QAnRSaveButton: TButton;
+    ClearQuestionMemoButton: TButton;
     Button4: TButton;
+    Button6: TButton;
     Button7: TButton;
     ClassNameEdit: TEdit;
     ClearCodeButton: TButton;
     CopyFromQAToCodeButton: TButton;
     DefaultPromptsJson: TMemo;
+    DeleteButton: TButton;
     DirectoryEdit1: TDirectoryEdit;
     EditMaxTokens: TEdit;
     EditTemperature: TEdit;
@@ -31,46 +33,46 @@ type
     GetModelsButton: TButton;
     Label10: TLabel;
     Label2: TLabel;
+    Label3: TLabel;
+    Label4: TLabel;
     Label5: TLabel;
     Label7: TLabel;
     Label8: TLabel;
     Label9: TLabel;
     Memo1: TMemo;
     Memo2: TMemo;
+    Memo3: TMemo;
     ModelCombo: TComboBox;
+    NewPromptButton: TButton;
     Panel1: TPanel;
     Panel2: TPanel;
     Panel3: TPanel;
+    Panel4: TPanel;
+    Panel5: TPanel;
+    Panel6: TPanel;
+    PromptCombo: TComboBox;
+    PromptLabel: TLabel;
     SaveCodeButton: TButton;
     ShowGamesButton: TButton;
     Splitter1: TSplitter;
-    SynPHPSyn1: TSynPHPSyn;
+    UpdatePromptButton: TButton;
     UseCodeCheck: TCheckBox;
-    UseQAndR: TCheckBox;
     Button5: TButton;
-    Button6: TButton;
-    DeleteButton: TButton;
-    PromptLabel: TLabel;
-    Label3: TLabel;
-    Label4: TLabel;
-    Memo3: TMemo;
     Memo4: TMemo;
-    NewPromptButton: TButton;
     PageControl1: TPageControl;
-    PromptCombo: TComboBox;
     QAndATab: TTabSheet;
     PromptTab: TTabSheet;
     Label1: TLabel;  // Holds the API key
     SaveDialog1: TSaveDialog;
-    UpdatePromptButton: TButton;
+    UseQAndR: TCheckBox;
     procedure Button1Click(Sender: TObject);
-    procedure Button2Click(Sender: TObject);
+    procedure QAnRSaveButtonClick(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure ClearCodeButtonClick(Sender: TObject);
     procedure CopyFromQAToCodeButtonClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure GetModelsButtonClick(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
+    procedure ClearQuestionMemoButtonClick(Sender: TObject);
     procedure DeleteButtonClick(Sender: TObject);
     procedure NewPromptButtonClick(Sender: TObject);
     procedure Button5Click(Sender: TObject);
@@ -444,7 +446,7 @@ begin
 
 end;
 
-procedure TForm1.Button2Click(Sender: TObject);
+procedure TForm1.QAnRSaveButtonClick(Sender: TObject);
 begin
   if SaveDialog1.Execute then
     Memo2.Lines.SaveToFile( SaveDialog1.Filename );
@@ -527,7 +529,7 @@ begin
   ModelCombo.Text := 'gpt-4o-mini';
 end;
 
-procedure TForm1.Button3Click(Sender: TObject);
+procedure TForm1.ClearQuestionMemoButtonClick(Sender: TObject);
 begin
   Memo2.Clear;
 end;

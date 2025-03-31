@@ -88,6 +88,7 @@ begin
       HttpClient.AllowRedirect := True;
       HttpClient.IOTimeout := 30000;
       HttpClient.ConnectTimeout := 30000;
+      HttpClient.IOTimeout:= 30000;
 
       // POST to your locally running Ollama instance
       HttpClient.RequestBody := TStringStream.Create(RequestJSON.AsJSON);
