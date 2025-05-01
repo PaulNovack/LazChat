@@ -1,7 +1,7 @@
 object NewPromptForm: TNewPromptForm
-  Left = 4271
+  Left = 2245
   Height = 321
-  Top = 585
+  Top = 335
   Width = 519
   Caption = 'New Prompt'
   ClientHeight = 321
@@ -12,7 +12,7 @@ object NewPromptForm: TNewPromptForm
   LCLVersion = '3.8.0.0'
   object PromptNameEdit: TEdit
     Left = 104
-    Height = 34
+    Height = 21
     Hint = 'Enter Prompt Name'
     Top = 8
     Width = 408
@@ -20,9 +20,9 @@ object NewPromptForm: TNewPromptForm
   end
   object PromptLabel: TLabel
     Left = 8
-    Height = 17
+    Height = 16
     Top = 13
-    Width = 99
+    Width = 87
     Caption = 'Prompt Name:'
   end
   object PromptMemo: TMemo
@@ -34,9 +34,9 @@ object NewPromptForm: TNewPromptForm
   end
   object PromptLabel1: TLabel
     Left = 8
-    Height = 17
+    Height = 16
     Top = 40
-    Width = 104
+    Width = 93
     Caption = 'System Prompt'
   end
   object SaveButton: TButton

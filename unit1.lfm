@@ -1,10 +1,10 @@
 object Form1: TForm1
-  Left = -1920
-  Height = 1080
-  Top = 18
+  Left = 1534
+  Height = 968
+  Top = 119
   Width = 1920
   Caption = 'LazChat'
-  ClientHeight = 1080
+  ClientHeight = 968
   ClientWidth = 1920
   OnCreate = FormCreate
   OnShow = FormShow
@@ -20,7 +20,7 @@ object Form1: TForm1
   end
   object PageControl1: TPageControl
     Left = 1219
-    Height = 1080
+    Height = 968
     Top = 0
     Width = 701
     ActivePage = QAndATab
@@ -29,11 +29,11 @@ object Form1: TForm1
     TabOrder = 0
     object QAndATab: TTabSheet
       Caption = 'Question and Answers'
-      ClientHeight = 1044
+      ClientHeight = 932
       ClientWidth = 695
       object Memo2: TMemo
         Left = 0
-        Height = 944
+        Height = 832
         Top = 100
         Width = 695
         Align = alClient
@@ -72,7 +72,7 @@ object Form1: TForm1
           OnChange = UseQAndRChange
         end
         object QAnRSaveButton: TButton
-          Left = 360
+          Left = 528
           Height = 29
           Top = 8
           Width = 155
@@ -81,7 +81,7 @@ object Form1: TForm1
           OnClick = QAnRSaveButtonClick
         end
         object Button6: TButton
-          Left = 186
+          Left = 368
           Height = 29
           Top = 8
           Width = 152
@@ -89,14 +89,14 @@ object Form1: TForm1
           TabOrder = 3
           OnClick = Button5Click
         end
-        object Button1: TButton
+        object GetLLMResponseButton: TButton
           Left = 8
           Height = 29
           Top = 8
           Width = 160
           Caption = 'Get LLM Response'
           TabOrder = 4
-          OnClick = Button1Click
+          OnClick = GetLLMResponseButtonClick
         end
         object Label3: TLabel
           Left = 8
@@ -105,16 +105,25 @@ object Form1: TForm1
           Width = 184
           Caption = 'Question and Response Memo'
         end
+        object Button2: TButton
+          Left = 192
+          Height = 25
+          Top = 12
+          Width = 144
+          Caption = 'Add Context / Code'
+          TabOrder = 5
+          OnClick = Button2Click
+        end
       end
     end
     object PromptTab: TTabSheet
       Caption = 'System Prompt and JSON Sent'
-      ClientHeight = 1044
+      ClientHeight = 932
       ClientWidth = 695
       OnContextPopup = PromptTabContextPopup
       object Memo4: TMemo
         Left = 0
-        Height = 664
+        Height = 552
         Top = 80
         Width = 695
         Align = alClient
@@ -135,7 +144,7 @@ object Form1: TForm1
       object Panel5: TPanel
         Left = 0
         Height = 300
-        Top = 744
+        Top = 632
         Width = 695
         Align = alBottom
         Caption = 'Panel5'
@@ -224,17 +233,17 @@ object Form1: TForm1
   end
   object Panel1: TPanel
     Left = 0
-    Height = 1080
+    Height = 968
     Top = 0
     Width = 1219
     Align = alClient
     Caption = 'Panel1'
-    ClientHeight = 1080
+    ClientHeight = 968
     ClientWidth = 1219
     TabOrder = 1
     object Splitter1: TSplitter
       Left = 1213
-      Height = 919
+      Height = 807
       Top = 160
       Width = 5
       Align = alRight
@@ -440,17 +449,17 @@ object Form1: TForm1
     end
     object Panel3: TPanel
       Left = 1
-      Height = 919
+      Height = 807
       Top = 160
       Width = 414
       Align = alLeft
       Caption = 'Panel3'
-      ClientHeight = 919
+      ClientHeight = 807
       ClientWidth = 414
       TabOrder = 2
       object FileListBox1: TFileListBox
         Left = 1
-        Height = 917
+        Height = 805
         Top = 1
         Width = 412
         Align = alClient
@@ -468,7 +477,7 @@ object Form1: TForm1
     end
     object Memo1: TMemo
       Left = 415
-      Height = 919
+      Height = 807
       Top = 160
       Width = 798
       Align = alClient

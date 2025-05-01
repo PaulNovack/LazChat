@@ -15,7 +15,8 @@ type
   { TForm1 }
 
   TForm1 = class(TForm)
-    Button1: TButton;
+    GetLLMResponseButton: TButton;
+    Button2: TButton;
     QAnRSaveButton: TButton;
     ClearQuestionMemoButton: TButton;
     Button4: TButton;
@@ -65,7 +66,8 @@ type
     Label1: TLabel;  // Holds the API key
     SaveDialog1: TSaveDialog;
     UseQAndR: TCheckBox;
-    procedure Button1Click(Sender: TObject);
+    procedure GetLLMResponseButtonClick(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
     procedure QAnRSaveButtonClick(Sender: TObject);
     procedure Button4Click(Sender: TObject);
     procedure ClearCodeButtonClick(Sender: TObject);
@@ -361,7 +363,7 @@ begin
 end;
 
 // 3) Send a new user prompt, get the assistant reply
-procedure TForm1.Button1Click(Sender: TObject);
+procedure TForm1.GetLLMResponseButtonClick(Sender: TObject);
 var
   APIKey: string;
   Temperature: Double;
@@ -444,6 +446,83 @@ begin
   Memo2.Lines.Add(Response);
   RemoveMarkdownSyntaxFromMemo;
 
+end;
+
+procedure TForm1.Button2Click(Sender: TObject);
+var
+  APIKey: string;
+  Temperature: Double;
+  MaxTokens: Integer;
+  UserMsg: TJSONObject;
+  UserPrompt, RequestPayload, Response: string;
+  RequestJSON: TJSONObject;
+begin
+  UseCodeCheck.Checked := true;
+  Memo3.Clear;
+  APIKey := Label1.Caption;
+  UserPrompt := Trim(Memo1.Text);
+  if UserPrompt = '' then
+  begin
+    ShowMessage('Please enter a prompt in Memo1.');
+    Exit;
+  end;
+  if FirstMessage <> 0 then
+    begin
+    if Memo1.Text = '' then
+    begin
+      ShowMessage('Please enter code in File to Sent LLM Memo.');
+      Exit;
+    end;
+  end;
+
+  Temperature := StrToFloatDef(EditTemperature.Text, 0.7);
+  MaxTokens    := StrToIntDef(EditMaxTokens.Text, 512);
+
+  // STEP 1) Add new user message to FConversation
+  //UserMsg := TJSONObject.Create;
+  //UserMsg.Add('role', 'user');
+  //UserMsg.Add('content', UserPrompt);
+  //FConversation.Add(UserMsg);
+  // (You can cast if needed in older FPC: FConversation.Add(TJSONData(UserMsg));)
+  if (FirstMessage = 0) and (not UseCodeCheck.Checked) then
+  begin
+    UserMsg := TJSONObject.Create;
+    UserMsg.Add('role', 'user');
+    UserMsg.Add('content', Memo2.Text);
+    FConversation.Add(UserMsg);
+  end
+  else
+  begin
+    UserMsg := TJSONObject.Create;
+    UserMsg.Add('role', 'user');
+    UserMsg.Add('content', Memo1.Text);
+    FConversation.Add(UserMsg);
+    if FirstMessage = 1 then
+    begin
+      UseCodeCheck.Checked := False;
+      UseQAndR.Checked := True;
+    end;
+  end;
+  FirstMessage := 0;
+  Memo2.Clear;
+
+  // STEP 2) Build the exact JSON that TChatCompletion will send
+  //         (same structure as inside TChatCompletion).
+  RequestJSON := TJSONObject.Create;
+  try
+    // clone the conversation array so we don't mutate the original
+    RequestJSON.Add('messages', FConversation.Clone as TJSONArray);
+    RequestJSON.Add('temperature', Temperature);
+    RequestJSON.Add('max_tokens', MaxTokens);
+    RequestJSON.Add('stream', false);
+    // Show the JSON in Memo3
+    Memo3.Text := PrettyPrintJSON(RequestJSON.AsJSON);
+  finally
+    RequestJSON.Free;
+  end;
+
+  Memo2.Lines.Add(Response);
+  RemoveMarkdownSyntaxFromMemo;
 end;
 
 procedure TForm1.QAnRSaveButtonClick(Sender: TObject);
